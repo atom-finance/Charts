@@ -36,6 +36,9 @@ public protocol ChartViewDelegate
     
     // Called when nothing has been selected or an "un-select" has been made.
     @objc optional func chartValueNothingSelected(_ chartView: ChartViewBase)
+
+    // Called when did end dragging.
+    @objc optional func chartViewDidEndDragging(_ chartView: ChartViewBase)
     
     // Callbacks when the chart is scaled / zoomed via pinch zoom gesture.
     @objc optional func chartScaled(_ chartView: ChartViewBase, scaleX: CGFloat, scaleY: CGFloat)
@@ -242,6 +245,13 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
         lastHighlighted = nil
     
         setNeedsDisplay()
+    }
+
+    // Clear the currently displayed highlight progamatically
+    @objc open func clearHighlight() {
+      lastHighlighted = nil
+      highlighted.removeAll()
+      setNeedsDisplay()
     }
     
     /// Removes all DataSets (and thereby Entries) from the chart. Does not set the data object to nil. Also refreshes the chart by calling setNeedsDisplay().

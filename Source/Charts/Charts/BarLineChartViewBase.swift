@@ -776,6 +776,7 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
         }
         else if recognizer.state == NSUIGestureRecognizerState.ended || recognizer.state == NSUIGestureRecognizerState.cancelled
         {
+            delegate?.chartViewDidEndDragging?(self)
             if _isDragging
             {
                 if recognizer.state == NSUIGestureRecognizerState.ended && isDragDecelerationEnabled

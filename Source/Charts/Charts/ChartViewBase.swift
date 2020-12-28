@@ -249,8 +249,8 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
 
     // Clear the currently displayed highlight progamatically
     @objc open func clearHighlight() {
+      _indicesToHighlight.removeAll()
       lastHighlighted = nil
-      highlighted.removeAll()
       setNeedsDisplay()
     }
     
